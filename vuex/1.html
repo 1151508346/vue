@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h3>hello vuex</h3>
+        <div>{{$store.state.count}}{{count}}</div>
+        <button @click="$store.commit('add')">+</button>
+        <button @click="$store.commit('jian')">-</button>
+    </div>
+
+    <script>
+        const s = {
+            count: 44,
+        }
+        const mutations = {
+            add: function (state) {
+                this.state.count++;
+                console.log(this);
+            },
+            jian: function (state) {
+                this.state.count--;
+
+            }
+        }
+        const store = new Vuex.Store({
+            state: s,
+            // state表示状态对象，存放一些数据
+            mutations,
+            // mutations访问触发状态对象
+        })
+        const temp = {
+            template: `<div id="app">
+                    <h3>hello vuex</h3>
+                    <div>{{$store.state.count}}{{count}}</div>
+                    <button @click="$store.commit('add')">+</button>
+                     <button @click="$store.commit('jian')">-</button>
+                </div>`
+        }
+        var vm = new Vue({
+            el: "#app",
+            // render: xx => xx(temp),
+            // components: temp,
+            template: temp.template,
+            store,
+            data: {
+                count: 0,
+            },
+            //第一种
+            // computed: {
+            //     count() {
+            //         return this.$store.state.count;
+            //     }
+            // },
+            //第二种
+            // computed: Vuex.mapState({
+            //     count_handle: state => state.count,
+            // }),
+            // mounted() {
+            //     this.count = this.count_handle + 1;
+            // }
+            //第三种
+
+            //   
+
+
+        });
+
+    </script>
+</body>
+
+</html>

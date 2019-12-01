@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <hello @increate='handletotal'></hello>
+        <hello @increate='handletotal'></hello>
+        <h1>{{total}}</h1>
+    </div>
+    <script>
+        Vue.component('hello', {
+            data: function () {
+                return { number: 1 };
+            },
+            template: "<button @click ='handleClick'>{{number}}</button>",
+            methods: {
+                handleClick: function () {
+                    this.number++;
+                    console.log(this.number);
+                    this.$emit('increate', 1);
+                }
+
+            },
+            mounted() {
+                console.log('created')
+                this.$on('increate', function (data) {
+                    console.log("increate 发生变化")
+                })
+            },
+        });
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                total: 2,
+            },
+            methods: {
+                handletotal: function (value) {
+                    this.total += value;
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

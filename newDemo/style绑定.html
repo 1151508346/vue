@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 :style="json">aaaaaa</h1>
+
+
+        <h1 :style="[json]">aaaaaa</h1>
+        <h1 :style="[json,addjson]">aaaaaa</h1>
+        <!-- class的绑定 -->
+        <!-- <div :class = "'active'">000000000</div>
+        <div :class = "{active:isactive}">11111111</div>
+        <div :class = "[isactive]">11111111</div>
+
+        <div :class = "bbbb">000000000</div> -->
+    </div>
+    <script>
+       var vm = new Vue({
+            el:"#app",
+            data:{
+                json:{
+                    color:"red",
+                    border:'1px solid red',                    
+                },
+                addjson:{//附加样式
+                    'text-shadow':"5px 5px 5px yellow",
+                }
+                // isactive:'active',
+                // bbbb:"active"
+            }
+        })
+    </script>
+</body>
+</html>

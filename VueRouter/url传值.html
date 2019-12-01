@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+
+<body>
+    <!-- 
+    传参可以使用params和query两种方式。
+    使用params传参只能用name来引入路由，即push里面只能是name:’xxxx’,
+    不能是path:’/xxx’,因为params只能用name来引入路由，
+    如果这里写成了path，接收参数页面会是undefined！！！。
+    使用query传参使用path来引入路由。
+    params是路由的一部分,必须要在路由后面添加参数名。
+    query是拼接在url后面的参数，没有也没关系。
+    二者还有点区别，直白的来说query相当于get请求，
+    页面跳转的时候，可以在地址栏看到请求参数，
+    而params相当于post请求，参数不会再地址栏中显示。
+-->
+    <div id="app">
+        <h1></h1>
+        <router-link to="/first/123">first</router-link>
+        <router-link to="/second/456">second</router-link>
+        <router-link to="/regix/500">regix</router-link>
+        <router-view></router-view>
+
+
+        <pre>
+                <code>
+                    {{JSON.stringify($route,null,4)}}  
+                </code>
+            </pre>
+        <!--  <router-view name ='left' style ='width:500px;height:400px;background:blue;float:left;'></router-view>
+            <router-view name ='right'  style ='width:500px;height:400px;background:red;float:left;'></router-view> -->
+    </div>
+    <script>
+
+        const first = {
+            template: "<div>this is first{{$route.params.aaa}}</div>",
+        }
+        const second = {
+            template: "<div>this is second{{$route.params.bbb}}===>{{$route.__proto__}}</div>",
+        }
+        const regex = {
+            template: "<div>this is regex{{$route.params.id}}===>{{$route.__proto__}}</div>",
+        }
+        // const haha= {
+        //     template:"<div>haha</div>",
+        // }
+        // const hehe= {
+        //     template:"<div>hehe</div>",
+        // }
+
+
+        const vuerouter = new VueRouter({
+            routes: [{
+                path: '/first/:aaa',
+                component:first
+                // components:{
+                //     default:haha,
+                //     left:first,
+                //     right:second,
+                // },
+            }, {
+                path: '/second/:bbb',
+                component:second
+                // components:{
+                //     default:hehe,
+                //     left:first,
+                //     right:second,
+                // },
+            }, {
+                path: '/regix/:id(\\d+)',
+                component:regex
+                // components:{
+                //     default:hehe,
+                //     left:first,
+                //     right:second,
+                // },
+            }],
+        });
+        
+        const vue = new Vue({
+            el: "#app",
+            router: vuerouter,
+            watch:{//监控路由
+                "$route"(to,from){
+                     console.log(to,from);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

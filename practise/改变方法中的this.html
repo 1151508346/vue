@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="vue.js"></script>
+    </head>
+    <body>
+    <div id="app">
+        <button id= 'btn' @click = 'handleclick'>点击我</button>
+                                    <!-- param为父组件传进去的参数变量 -->
+        <button id= 'btn2' @click = 'handleclick2(param)'>点击我</button>  
+    </div>
+    <script>
+    var btn = document.getElementById('btn');
+    var obj = [];
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            param:[1,2,3],
+        },
+        methods:{
+            handleclick:function(){
+                console.log(this);
+            }.bind(btn),
+            handleclick2:function(p){
+                console.log(this);
+                console.log(p);
+            }
+        }
+    });
+
+
+    </script>
+    </body>
+</html>

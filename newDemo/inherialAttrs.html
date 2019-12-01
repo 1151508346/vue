@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="app">
+            <hello :message="msg" :title="msg"></hello>
+        </div>
+        <script src="./vue.js"></script>
+        <script>
+        // 父子组件传值的过程中，当所绑定的属性在子组件的props属性外时，可以通过this.$attr来获取到，
+        var com = Vue.component('hello',{
+            props:['message'],
+            template:'<div>{{this.$attrs.title}}</div>'
+        })
+     
+       
+              new Vue({
+                el:"#app",
+                data:{
+                    msg:"aaaa",
+                }
+              })  
+
+
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="app">
+        <div id="div" ref="div" @click = "one">dd</div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+           
+        },
+        methods:{
+            /*ref 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例：
+                <!-- `vm.$refs.p` will be the DOM node -->
+                <p ref="p">hello</p>
+
+                <!-- `vm.$refs.child` will be the child component instance -->
+                <child-component ref="child"></child-component>
+            */
+            one(){
+                console.log(this.$refs.div);
+                this.$refs.div.style.backgroundColor="red";
+
+            }
+
+        }
+    });
+   
+
+    
+    </script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- ref用来注册引用信息 -->
+        <div ref = "div"
+            @click="handlefun"    
+        >aaa</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{},
+            methods:{
+                handlefun:function(){
+                   console.log(this.$refs.div); 
+                }
+            }
+
+        });
+        
+    </script>
+</body>
+</html>

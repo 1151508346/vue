@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div id="app">
+        <hello title='标题' url="1.jpg"></hello>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var child = {
+            /*template:"<img src='url'/>"*/
+            template: "<img/>"
+        };
+        var parent = {
+            props: ['title', 'url'],
+            template: `<div>
+                          <h1>{{title}}{{url}}</h1>
+                          <mydiv :src='url'></mydiv>
+                      </div>`,
+            components: {
+                'mydiv': child,
+            }
+        }
+        Vue.component('hello', parent);
+        new Vue({
+            el: '#app',
+        });
+    </script>
+</body>
+
+</html>

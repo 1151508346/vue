@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+         <button @click="handleClick(msg)">点击</button>
+         <cdn >
+             <template slot-scope="slot">
+                    <ul>
+                        <li v-for="(val,index) of slot.data">{{val}}</li>
+                    </ul>
+             </template>
+         </cdn>
+    </div>
+    <template id="cdn">
+        <div>
+            <slot :data="arr">
+                <!-- <ul >
+                    <li v-for="(val,key) of arr">{{val}}---</li>
+                </ul> -->
+            </slot>
+        </div>
+    </template>
+    <script>
+
+    var vm= new Vue({
+        el:"#app",
+        data:{
+            msg:"abc",
+        },
+        methods:{
+            handleClick(data){
+                console.log(data);
+            }
+        },components:{
+           cdn:{
+            template:"#cdn",
+            data:function(){
+                return {
+                    arr:[1,2,3,4]
+                }
+            }
+           }
+        }
+    });
+
+    </script>
+</body>
+</html>

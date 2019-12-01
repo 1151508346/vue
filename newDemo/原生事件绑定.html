@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- native给自定义的组件绑定原生事件、 -->
+        <!-- <child @click.native = "handleClick" content="点击"></child>  -->
+        <child  content="点击"></child>
+    </div>
+    <script>
+        Vue.component('child',{
+            props:['content'],
+            template:"<h1 @click ='handleClick'>{{content}}</h1>",
+            methods:{
+                // _click:function(){
+                //    this.$emit('_click',this.content);
+                // },
+                handleClick:function(){
+                    console.log('handleClick被点击了');
+                    
+                }
+            }
+        });
+        var vm = new Vue({
+            el:"#app",
+            
+            data:{},
+            methods:{
+                // handleClick:function(){
+                //     console.log('handleClick被点击了');
+                //     console.log(this.content);
+                // }
+            }
+        });
+        
+    </script>
+</body>
+</html>

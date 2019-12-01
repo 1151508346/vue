@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+    [v-cloak] {
+        display: none;
+    }
+    </style>
+    <body>
+    <!-- v-cloak 编译结束后才显示 不需要表达式 . -->
+    <div id="app" v-cloak>
+    <p style="border:1px solid red;" v-for="(item,index) in message">     
+    {{'数据'+item+'索引'+index}}
+    </p>
+    <!-- v-for循环数据 数组、对象 -->
+    <p v-for="(item,index) in message1">{{index+"->"+item}} </p>
+    <p v-for="item in message1">{{item}} </p>
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    var arr = ['aaa','bbb','ccc'];
+    var json = {
+        name :'Jack',
+        age:18
+    }
+    new Vue({
+        el:'#app',
+        data:{
+            message:arr,
+            message1:json
+        }
+    });
+    
+    </script>
+    </body>
+</html>

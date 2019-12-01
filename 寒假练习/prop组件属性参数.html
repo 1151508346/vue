@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="app">
+        <input type="text" v-model="Message"/>
+        <hello :message = 'Message'></hello>
+         <!-- <hello v-bind:message = 'Message'></hello> -->
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component('hello',{
+            props:['message'],
+            template:"<h1>{{message}}</h1>"
+        });
+        new Vue({
+            el:'#app',
+            data:{
+                Message:'',
+            }   
+        });
+    </script>
+    </body>
+</html>

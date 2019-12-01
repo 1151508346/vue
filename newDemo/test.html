@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+    
+    <div id="app">
+        <hello index='aaa' @delete='handledelete'></hello>
+    </div>
+    <script>
+        /**
+         * 父组件向子组件传递数据：通过属性来传递的
+         *  父向子传值，但子不能修改父的值负责会出错
+         * 子组件向父组件传递数据，通过自定义事件的方式，
+         *  例如：this.$emit('delete',args);
+         * 在delete事件上通过绑定函数来处理业务逻辑的时候，args是传入函数的参数
+         * 
+        */
+        Vue.component('hello',{
+            props:['index'],
+            template:"<h1  @click='handle' >{{index}}</h1>",
+            methods:{
+                handle:function(){
+                    this.$emit('delete',this.index);
+                }
+            }
+        });
+        var vm = new Vue({
+            el:"#app",
+            methods:{
+                handledelete:function(index){
+                    console.log('handledelete()函数执行了');
+                    console.log(index);
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

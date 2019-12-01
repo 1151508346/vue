@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h3>hello vuex</h3>
+        <div>{{$store.state.count}}{{count}}</div>
+        <button @click="$store.commit('add')">+</button>
+        <button @click="jian">-</button>
+    </div>
+
+    <script>
+        const s = {
+            count: 44,
+        }
+        const mutations = {
+            add: function (state) {
+                this.state.count++;
+                console.log(this);
+            },
+            jian: function (state) {
+                this.state.count--;
+
+            }
+        }
+        //计算state中的属性数据(也有对count数据进行监听的作用)
+        //当count发生改变的时候，getter就会执行
+        const getters = {
+            count: function (state) {
+                console.log('asdasd');
+                return state.count += 100;
+            }
+        }
+        const moduleA = {
+            state:{
+                countA:1000,
+            }
+        }
+        const store = new Vuex.Store({
+            state: s,
+            // state表示状态对象，存放一些数据
+            mutations,
+            // mutations访问触发状态对象
+            getters,
+            modules:{
+                a:moduleA
+            }
+        })
+        const temp = {
+            template: `<div id="app">
+                    <h3>hello vuex</h3>
+           
+                    <div>---{{count}}----moduleA{{$store.state.a.countA}}</div>
+                    <button @click="add">+</button>
+                     <button @click="jian">-</button>
+                </div>`
+        }
+        var vm = new Vue({
+            el: "#app",
+            // render: xx => xx(temp),
+            // components: temp,
+            template: temp.template,
+            store,
+            data: {
+                // count: 0,
+            },
+            computed: {
+                // ...Vuex.mapState([
+                //     'count'
+                // ]),
+                count() {
+                    return this.$store.getters.count;
+                }
+                // ...Vuex.mapGetters([
+                //     'count',
+                // ])
+
+            },
+            methods: Vuex.mapMutations([
+                'add',
+                'jian'
+            ]),
+
+            //第一种
+            // computed: {
+            //     count() {
+            //         return this.$store.state.count;
+            //     }
+            // },
+            //第二种
+            // computed: Vuex.mapState({
+            //     count: state => state.count,
+            // }),
+
+            //第三种
+            // computed: Vuex.mapState([
+            //     'count'
+            // ])
+            // 第四种
+            // computed: {
+            //     ...Vuex.mapState([
+            //         'count'
+            //     ]),
+
+            // },
+
+        });
+
+    </script>
+</body>
+
+</html>

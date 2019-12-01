@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <script>        
+
+   
+    function aa(){
+       
+        function handleClick (){
+            console.log('handleClick执行多次');
+        }
+        document.onclick =  handleClick;
+        console.log("aa执行一次");
+    }
+    // document.onclick =  handleClick;
+    aa();
+
+
+    </script>
+    </body>
+</html>

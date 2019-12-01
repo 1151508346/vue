@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model='message'>
+        <h1 ref='h1'>{{message}}</h1>
+        <h2>{{message2}}</h2>
+        <button @click="changedata">点击</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'aaaaa',
+                message2: 'a'
+            },
+            methods: {
+
+                changedata: function () {
+
+                    // 当this.message = 'bbbb'信息未渲染到页面的时候,this.message2 = this.$refs.h1.innerHTML执行了，此时拿到的数据就是更新前的数据;
+                    this.message = 'bbbb';
+                    this.message2 = this.$refs.h1.innerHTML;
+                    // 下面代码执行先后顺序 
+                    //$nextTick()在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。    
+                    console.log(this.message2);  //first
+                    this.$nextTick(function () {
+                        console.log(this.$refs.h1.innerHTML);//third
+
+                    });
+                    console.log(this.$refs.h1.innerHTML);//second
+                }
+            }
+        });
+        Vue.component('hello', {
+            props: ['aaa', 'ccc'],
+            template: '<div>aaaa</div>',
+
+        })
+
+
+    </script>
+</body>
+
+</html>

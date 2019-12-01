@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="app">
+        
+    </div>
+    <script src="vue.js"></script>
+    <script>
+     const con = {
+        template:"<h1>aaaaaaaa</h1>",
+       }
+      const hell =  Vue.component('hello',{
+        props:['msg'],
+        components:{
+            con,
+        },
+        template:`
+            <div id= "app">
+                <img src="1.jpg" alt="">
+                 <con></con>
+            </div>
+        `,
+    });
+
+       
+    const vm = new Vue({
+        el:"#app",
+        template:'<hello/>',
+        // components:{
+        //     con,
+        // },
+        data:{
+            msg:'1.jpg',
+        }
+
+    })
+    </script>
+    </body>
+</html>

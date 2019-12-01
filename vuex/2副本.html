@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./vuex.js"></script>
+</head>
+
+<body>
+   
+   <div id="app">
+      count {{count}}
+      <button @click="handleChangeCount">点击</button>
+
+      <button @click="changeCount">自己改变</button>
+
+      <button @click="$store.dispatch('handleCount',{
+        name:'Jack',
+        age:10
+      })">
+          action
+      </button>
+
+      <button @click="handleCount({name:'aaa'})">
+          action2
+      </button>
+   </div>
+    <script>
+
+
+    const state = {
+        count:20,
+    }
+    const mutations = {
+        changeCount:function(state){
+            return state.count+=10;
+        }
+    }
+    const getters = {
+        count:function(state){
+            return state.count;
+        }
+    }
+    const actions = {
+        handleCount(...context){
+            console.log(context)
+        }
+    }
+    const store = new Vuex.Store({
+        state,
+        mutations,
+        getters,
+        actions
+    });
+
+
+    new Vue({
+        el:"#app",
+        store,
+        computed:{
+            // count:function(){
+            //     console.log(this.$store.getters.count)
+            //    return this.$store.getters.count;
+            // },
+            // ...Vuex.mapState({
+            //     count:state=>state.count
+            // })
+            ...Vuex.mapGetters([
+                'count'
+                ]
+            )
+        },
+        methods:{
+            handleChangeCount:function(){},
+            ...Vuex.mapMutations([
+                "changeCount"
+            ]),
+            ...Vuex.mapActions([
+                "handleCount"
+            ])
+        }
+
+
+          
+       })    
+      
+  
+
+    </script>
+</body>
+
+
+</html>

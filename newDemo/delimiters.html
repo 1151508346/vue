@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="app">
+        <h1>$[msg]</h1>
+       <!--  <h1>{{msg}}</h1> -->
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+// delimiters
+
+// 自己总结，改变vue中绑定数据的差值表达式:{{}}
+
+
+
+
+
+
+
+// 官方解释。
+// delimiters
+// 类型：Array<string>
+
+// 默认值：["{{", "}}"]
+
+// 限制：这个选项只在完整构建版本中的浏览器内编译时可用。
+
+// 详细：
+
+// 改变纯文本插入分隔符。
+        const vm = new Vue({
+            el:"#app",  
+            delimiters:["$[","]"],
+            // delimiters:['${','}'],
+            data:{
+                msg:"aaaaa",
+            }
+        })
+
+    </script>
+    </body>
+</html>

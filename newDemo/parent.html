@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <hello></hello>
+    </div>
+    <script>
+        var hello = {
+            template: `
+                <div><h1>我是子组件</h1> 
+                    {{this.$parent.$data.msg}}</div>
+            `
+        }
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "我是父组件中的msg数据",
+            },
+            components: {
+                hello,
+            }
+        })
+    </script>
+</body>
+
+</html>

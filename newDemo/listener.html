@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+        #app,.aa{
+            width:200px;
+
+            height: 200px;
+            border:1px solid red;
+        }
+        .aa{
+            width:100px;
+
+            height: 100px;
+            border:1px solid red;
+        }
+    </style>
+    <body>
+    <div id="app">
+        <hello @click="handleclick" ></hello>
+    
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    // 在组件上绑定系统事件，click keydown mouseover ... 组件模板可以通过v-on='$listeners'来接受
+    Vue.component('hello',{
+        template:"<div class='aa' v-on='$listeners'><button type='button' v-on='$listeners'>aaaaa</button> </div>"
+    })
+
+        const vm = new Vue({
+            el:"#app",  
+           
+            data:{
+              
+            },
+            methods:{
+                handleclick(){
+                    console.log('aaa');
+                }
+            }
+        })
+
+    </script>
+    </body>
+</html>

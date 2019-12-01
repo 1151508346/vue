@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style >
+            .v-enter,
+            .v-leave-to{
+                opacity: 1;
+
+            }
+            .v-enter-active,
+            .v-leave-active
+            {
+                transition: opacity 3s linear;
+                /*opacity: 0.5;*/
+                
+               /* font-size: 50px;*/
+            }
+        </style>
+    </head>
+    <body>
+
+    <script src="vue.js"></script>
+    <div id="app">
+        <transition>
+            <div v-if="show" >{{message}}</div>
+        </transition>
+        <button @click = "handleClick">改变</button>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                message:'hello word',
+                show:true,
+            },
+           methods:{
+             handleClick:function(){
+                this.show=!this.show;
+                console.log(this.show)
+            }  
+           }          
+        });
+
+
+    </script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{rev()}}</p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    new Vue({
+        el:"#app",
+        data:{
+            num1:12,
+            num2:13,
+        },
+        methods:{
+            rev(){
+                return this.num1+this.num2
+            }
+        },
+        computed:{
+            
+        }
+    });
+    </script>
+</body>
+</html>

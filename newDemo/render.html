@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <av ></av>
+    </div>
+
+    <script>
+
+    const aa = {
+        template:"<h1><div>aaaaaaa</div></h1>",
+    }
+        var tem = Vue.component('ele', {
+             template: "<div :style='style' :id = 'id'></div>",
+            render: h => h(aa, {
+                props: {
+                    id: "ele",
+                    class: "ele",
+
+                },
+                style: {
+                    width: "100px",
+                    height: "100px",
+                    backgroundColor: "red"
+                }
+            }),
+            // data: () => {
+            //     return {
+            //         id: "ele",
+            //         style: {
+            //             width: "100px",
+            //             height: "100px",
+            //             backgroundColor: "red"
+            //         }
+            //     }
+            // }
+        });
+        // });
+        var ab = {
+            template: "<a>aaaaaaa</a>",
+        }
+        new Vue({
+            el: "#app",
+            components: {
+                "av": tem,
+            },
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

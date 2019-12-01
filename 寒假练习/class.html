@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .isActive {
+            width: 200px;
+            color: red;
+            border: 1px solid red;
+        }
+        .msg2{
+            color:aqua;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <h3 :class="{'isActive':active}">aaa</h3>
+        <h3 :class="message">bbb</h3>
+        <h3 :class="[message2]">ccc</h3>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                active: false,
+                message: "msg",
+                message2:"msg2"
+            },
+        })
+    </script>
+</body>
+
+</html>

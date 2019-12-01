@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="app">
+        
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+ // 如果你的混入包含一个钩子而创建组件本身也有一个，两个函数将被调用。
+
+//但是如何是methods data等等中的数据或者方法的时候，在同名的情况下创建的vue实例会进行覆盖，
+//Mixin 钩子按照传入顺序依次调用，并在调用组件自身的钩子之前被调用。
+        var mixin = {
+          created: function () { console.log(1) },
+          data:{
+            message:"混入中的message",
+          },
+          methods:{
+            show(){
+                console.log('我是混入的show方法');
+            }
+          }
+        }
+       
+        var vm = new Vue({
+            el:'#app',
+          created: function () { console.log(2) },
+          mixins: [mixin],
+          data:{
+            message:"实例中的message",
+          },
+          methods:{
+            show(){
+                console.log('我是自己的方法');
+            }
+          }
+        });
+        vm.show();
+        console.log(vm.$data.message);
+
+
+    </script>
+    </body>
+</html>

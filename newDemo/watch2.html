@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model='msg.msg_name'>
+        <p>{{message}}</p>
+
+
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                msg: {
+                    msg_name: "默认值",
+                    age: 0,
+                },
+                message: "",
+            },
+            watch: {
+                msg: {
+                    handler: function (value) {
+                        console.log(value);
+                        console.log(this.msg.msg_name);
+                    },
+                    /*deep深度监听msg的变化，若deep:false默认为false时，
+                    当改变msg_name时，hander函数不会被执行，因为没有监听到msg 的变化
+                    deep：true才能监听到msg中的变化情况*/
+                    deep: true,
+                    //msg监听函数在初始化的时候就会被执行的
+                    immediate: true,
+                }
+
+
+
+
+            },
+
+        });
+
+    </script>
+</body>
+
+</html>

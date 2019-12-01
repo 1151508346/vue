@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="node_modules/element-ui/lib/theme-chalk/index.css" />
+        <style type="text/css">
+            .aa{
+               color:red;
+           } 
+        </style>
+    </head>
+    <body>
+    <div id="app">
+        <hello class="aa"></hello>
+
+    </div>
+    <script src="vue.js"></script>
+    <script src="node_modules/element-ui/lib/index.js"></script>
+       <script>
+         Vue.component('hello',{
+            template:'<h1>{{message}}</h1>',
+            data:()=>{
+               return {message:"信息"}; 
+            }
+        });
+
+        new Vue({
+             el:"#app",
+        });
+       </script>
+
+    </body>
+</html>

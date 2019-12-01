@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            [v-cloak]{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="app" v-cloak>
+       <ul>
+           <li v-for="(item,index) in arr">{{item}}=>{{index}}</li>
+       </ul>
+       <ul>
+           <li v-for="(item,index) in arr">{{index}}</li>
+       </ul>
+
+       <ul>
+           <li v-for="(val,key,index) in obj">{{val}}=>{{key}}=>{{index}}</li>
+       </ul>
+        
+        
+    </div>
+     <script src="vue.js"></script>
+    <script>
+    var uname="可爱";
+    new Vue({
+        el:"#app",
+        data:{
+            arr:['aaa','bbb','ccc',],
+            obj:{
+                aaa:"111",bbb:"222",ccc:"333"
+            }
+        }
+
+    });
+     </script>
+    </body>
+</html>

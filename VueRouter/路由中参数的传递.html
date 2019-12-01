@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>导航切换</h1>
+        <p>{{$route.name}}</p>
+        <router-link :to="{name:'first_name',params:{id:123,usename:'aaa',}}">First</router-link>
+        <router-link :to="{name:'second_name',params:{id:456,usename:'bbb',}}">Second</router-link>
+        <router-view></router-view>
+
+        <p>{{$route.name}}</p>
+        <pre><code>
+            {{JSON.stringify($route,null,4)}}
+
+        </code></pre>
+
+        <div style="color:red;">This is first{{$route.params.id}}</div>
+    </div>
+    <script>
+        const First = {
+            template: `
+                <div>This is first{{$route.params.id}}</div>
+            `,
+        }
+        const Second = {
+            template: `<div>This is Second{{$route.params.id}}</div>`,
+        }
+        const router = new VueRouter({
+            routes: [{
+                path: "/first",
+                name: "first_name",
+                component: First,
+            }, {
+                path: '/second',
+                name: 'second_name',
+                component: Second,
+            }],
+        });
+        const vm = new Vue({
+            el: "#app",
+            router,
+        });
+
+
+    </script>
+</body>
+
+</html>

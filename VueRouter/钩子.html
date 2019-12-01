@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ol>
+            <li>
+                <router-link to="/first">First</router-link>
+            </li>
+            <li>
+                <router-link to="/second">Second</router-link>
+            </li>
+        </ol>
+        <router-view></router-view>
+    </div>
+    <script>
+        const First = {
+            template: "<h2>this is First</h2>",
+
+            /*  模板中的钩子函数*/
+
+
+            // beforeRouteEnter(to, from, next) {
+            //     // console.log(to, from);
+            //     console.log('路由中的钩子函数执行了----1进来了');
+            //     next(true);
+            // },
+            // beforeRouteLeave(to, from, next) {
+            //     // console.log(to, from);
+            //     console.log('路由中的钩子函数执行了----1出去了');
+            //     next(true);
+            // }
+        }
+        const Second = {
+            template: "<h2>this is Second</h2>",
+            // beforeRouteEnter(to, from, next) {
+            //     // console.log(to, from);
+            //     console.log('路由中的钩子函数执行了----2进来了');
+            //     next(true);
+
+            // },
+            // beforeRouteLeave(to, from, next) {
+            //     // console.log(to, from);
+            //     console.log('路由中的钩子函数执行了----2出去了');
+            //     next(true);
+            // }
+        }
+        const Aaa = {
+            template: `
+                <h2>我是aaa组件</h2>
+            `
+        }
+        const router = new VueRouter({
+            routes: [
+                {
+                    path: "/first",
+                    component: First,
+
+                    /*路由中钩子函数
+                    *
+                    beforeLeave函数目前没法执行现在没有解决这个问题
+                    2019/4/4发现没有beforeLeave函数
+                    
+                    */
+
+                    beforeEnter: (to, from, next) => {
+                        console.log('1-------进来了');
+                        // next(true);
+                        next({ path: "/aaa" })//下一次直接去/aaa地址
+                    },
+                    // beforeLeave: (to, from, next) => {
+                    //     next(true);
+                    //     console.log('1-------出去了');
+
+                    // }
+                }, {
+                    path: "/second",
+                    component: Second,
+                    beforeEnter: (to, from, next) => {
+                        console.log('2-------进来了');
+                        console.log(to, from)
+                        next(true);
+
+                    },
+                    beforeLeave: (to, from, next) => {
+                        console.log('2-------出去了');
+                        next(true);
+                    }
+
+
+                },
+                {
+                    path: "/aaa",
+                    component: Aaa,
+                    beforeEnter: (to, from, next) => {
+                        console.log('3-------进来了');
+                        console.log(to, from)
+                        next(true);
+
+                    },
+                    beforeLeave: (to, from, next) => {
+                        console.log('3-------出去了');
+                        next(true);
+                    }
+
+
+                }
+            ],
+        })
+        const vm = new Vue({
+            el: "#app",
+            router,
+        });
+
+
+    </script>
+</body>
+
+</html>

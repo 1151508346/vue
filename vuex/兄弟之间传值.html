@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="./vue.js"></script>
+        <script src="./vuex.js"></script>
+    </head>
+    <body>
+    <div id="app">
+        <aaa></aaa>
+        <bbb></bbb>
+
+       
+    </div>
+        <script>
+
+                Vue.component('aaa',{
+                    template:`<h1 @click="handle(aaa)">aaa{{this.$store.state.msg}}</h1>`,
+                    data:function(){
+                        return {
+                            msg:"aaa",
+                            aaa:"我是组件aaa里面的数据",
+                        }
+                    },
+                    methods:{
+                        handle:function(data){
+                            this.$store.state.msg = data;
+                            // this.msg = this.$store.state.msg;
+                        }
+                    }
+                })
+
+                Vue.component('bbb',{
+                    template:"<h1 @click = 'handle(bbb)'>bbb{{this.$store.state.msg}}</h1>",
+                    data:function(){
+                        return {
+                            msg:"bbb",
+                            bbb:"我是组件bbb里面的数据",
+                        }
+                    },
+                    methods:{
+                        handle:function(data){
+                            this.$store.state.msg = data;
+                            //  this.msg = this.$store.state.msg;
+                        }
+                    }
+                })
+
+                //vuex实例对象
+                var store = new Vuex.Store({
+                    state:{
+                        msg:"default",
+                    }
+                });
+
+               var vm = new Vue({
+                    el:"#app",
+                    store,
+
+               });
+
+
+
+
+
+
+        </script>   
+
+    </body>
+</html>

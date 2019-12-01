@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <style>
+        .First_one {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ol>
+            <li>
+                <router-link to="/first">First</router-link>
+                <router-link to="/xiaoniu">xiaoniu </router-link>
+                <router-link to="/second">Second</router-link>
+            </li>
+            <ol>
+                <li>
+                    <router-link to="/first/first_one">First_one</router-link>
+
+                    <router-link to="/first/bieming">bie ming</router-link>
+
+
+                    <router-link to="/first/first_two">First_two</router-link>
+
+
+                </li>
+            </ol>
+            <router-view></router-view>
+        </ol>
+    </div>
+    <script>
+
+        const First = {
+            template: `<div>
+                            <div>this is First</div>
+                            <router-view></router-view>
+                     </div>`,
+        }
+        const Second = {
+            template: `<div>
+                            <div>this is Second</div>
+                            <router-view></router-view>
+                      </div>`,
+        }
+        const First_one = {
+            template: "<div class='First_one'>this is First_one</div>",
+        }
+
+        const Third = {
+            template: `
+                <h1>Component Third</h1>
+            `
+        }
+        const router = new VueRouter({
+            routes: [
+                {
+                    path: "/first",
+                    component: First,
+                    // alias 别名
+                    alias: "/xiaoniu",
+                    children: [
+                        {
+                            path: "first_one",
+                            component: First_one, alias: "bieming"
+                        },
+                        {
+                            path: "first_two",
+                            redirect: (params) => {
+                                // return "first_one";
+                                console.log(params)
+                                return "first_one";
+                            },
+                        }
+                    ]
+                },
+                {
+                    path: "/second", component: Second,
+
+                }
+                , {
+                    path: "/third", component: Third,
+                }
+            ]
+        });
+        const vm = new Vue({
+            el: "#app",
+            router,
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="./vue.js"></script>
+        <style>
+                 
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for = " (val,item,index) in json">
+                    {{val}}------{{item}}-----{{index}}
+                </li>
+            </ul>
+            <button v-on:click.once = 'handleone'>一次once</button>
+           <!--  <button v-once:click = 'handleone'>一次v-once</button> -->
+        </div>
+        <script>
+            var vm = new Vue({
+                el:"#app",
+                data:{
+                    json:{
+                        name:"Jack",
+                        age:18,
+                        sex:"male"
+                    },
+                },
+                methods:{
+                    handleone:function(){
+                        console.log('handleone方法执行了');
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>

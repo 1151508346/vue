@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <hello @welcome="demo"></hello>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        function e() {
+            console.log('e()执行了')
+        }
+        Vue.component('hello', {
+            template: `<button  @click='e'>点我</button>`,
+            methods:{
+                e,
+            }
+
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                demo: function () {
+                    alert('hello');
+                }
+            }
+        });
+
+        vm.$once('e', function () {
+            console.log('回调函数执行了');
+        })
+    </script>
+</body>
+
+</html>

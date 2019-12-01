@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="app">
+            <my-checkbox v-model="foo" value="some value"></my-checkbox>
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+    // Vue.component('my-checkbox',{
+    //      props:['checked'],
+    //     // model:{
+    //     //     prop:checked,
+    //     // },
+    //     // props:{
+    //     //     checked:{
+    //     //         type:string,
+    //     //         default:'0',
+    //     //     }
+      
+    //     template:'<h1><button type="button">{{checked}}</button></h1>',
+    // })
+
+        const vm = new Vue({
+            el:"#app",  
+            
+            data:{
+                foo:132132,
+            }
+        })
+
+    </script>
+    </body>
+</html>

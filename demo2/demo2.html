@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{message}}
+	</div>
+
+	<div id="app2">
+		{{message}}
+	</div>
+
+	<script>
+		
+		var vm  = new Vue({
+			// el:"#app",
+			data:{
+				message :"asdas",
+
+			},
+			created:function(){
+				console.log('created');
+			},
+			mounted:function(){
+				console.log('nsdaui')
+				this.$el = app2;
+			}
+
+		})
+		console.log();
+			
+	
+	</script>
+</body>
+</html>

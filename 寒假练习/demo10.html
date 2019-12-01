@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <hello :title="title" @welcome="sayhi"></hello>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        Vue.component('hello', {
+            props: ['title'],
+            //  注册自定义事件，123表示触发事件时传递的参数
+            template: `
+                <div>
+                    <h1>{{title.name}}</h1>
+                               
+                    <button v-on:click="$emit('welcome',123)">点我</button>
+                </div>
+            `
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                title: {
+                    name: 'aaaa'
+                }
+            },
+            methods: {
+                sayhi: function (data) {
+                    alert('aa');
+                    console.log(data)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+            <cdn></cdn>
+            <cdn ref="refsname"></cdn>
+
+        <button @click = "getChildData">getChildData</button>
+        <button @click = "getChildDataRef"> getChildDataRef</button>
+    </div>
+    <template id="cdn">
+        <div >
+             {{childmsg}}
+        </div>
+    </template>
+    <script>
+        var cdn = {
+                    template:"#cdn",
+                    data:function(){
+                        return {
+                            childmsg:"childmsg"
+                        }
+                    }
+                }
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"root msg"
+            },
+            methods: {
+                getChildData(){
+                    const childmsg = this.$children[0].childmsg
+                    console.log(childmsg)
+                },
+                getChildDataRef(){
+                    console.log(this.$refs.refsname.childmsg)
+                }
+            },
+            components:{
+                cdn
+            }
+        })
+    </script>
+</body>
+</html>

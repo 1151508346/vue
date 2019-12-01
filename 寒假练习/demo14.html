@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="demo">
+            点击
+        </button>
+        <ele @aaa='handleClick'></ele>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component('ele', {
+            template: `<div @click="$emit('aaa');">This is register aaa function</div> `,
+        })
+        function A() {
+            alert('demo()运行了');
+
+
+        }
+        var VM = new Vue({
+            el: '#app',
+            data: {
+                name: 'Jack',
+                age: 18
+            },
+            methods: {
+                demo: A,
+                handleClick: function () {
+                    alert('handleaaa执行了');
+                }
+            },
+            mounted() {
+                console.log('mounted')
+                this.$on('aaa', function () {
+                    console.log('aaa执行了');
+                })
+            },
+            computed: {
+                demo1: function () {
+                    this.name = 'Hery';
+                    return this.name;
+                },
+                demo2: {
+                    set: function () {
+                        this.name = 'demo2';
+                    },
+                    get: function () {
+                        return this.name = 'ABC';
+                    },
+
+                },
+
+            },
+
+        });
+        // VM.$on('aaa',function(){
+        //     alert('aaa运行了');
+        // })
+
+        console.log(VM.$data.name);
+        //    console.log(VM.demo1);
+        //   
+
+        // console.log(VM.demo2);
+        // console.log(VM.$data.name);
+        console.log(VM.demo1);
+
+
+
+    </script>
+</body>
+
+</html>

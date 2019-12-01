@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <input type="text" v-model="msg['name']">
+        {{message}}
+    </div>
+    <script>
+
+        var vm = new Vue({
+            el: "#root",
+            data: {
+                msg: {
+                    name: "abcs"
+                },
+                message: ''
+            },
+            watch: {
+                msg: {
+                    handler: function () {
+                        console.log(this.message = this.msg.name)
+                    },
+                    // 深度监听上
+                    deep: true,
+                    //初始化监听
+                    // immediate:true
+                }
+            }
+        })
+
+
+
+
+    </script>
+</body>
+
+</html>

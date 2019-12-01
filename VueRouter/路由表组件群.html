@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<style>
+    .haha,
+    .hehe {}
+
+    .haha {
+        background: blue;
+    }
+
+    .hehe {
+        background: yellow;
+    }
+
+    .first {
+        width: 500px;
+        height: 400px;
+        float: left;
+        background-color: red;
+    }
+
+    .second {
+        width: 500px;
+        height: 400px;
+        float: left;
+        background-color: yellow;
+    }
+
+    .second_one {
+        width: 500px;
+        height: 400px;
+        float: left;
+        background-color: black;
+    }
+
+    .second_two {
+        width: 500px;
+        height: 400px;
+        float: left;
+        background-color: pink;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <h1></h1>
+        <router-link to="/first">first</router-link>
+        <router-link to="/second">second</router-link>
+        <router-view></router-view>
+        <router-view name='first_one'></router-view>
+        <router-view name='first_two'></router-view>
+
+
+        <router-view name='second_one'></router-view>
+        <router-view name='second_two'></router-view>
+
+
+    </div>
+    <script>
+        const first = {
+            template: "<div class='first'>this is first</div>",
+        }
+        const second = {
+            template: "<div class='second'>this is second</div>",
+        }
+
+
+        const second_one = {
+            template: "<div class='second_one'>this is second_one</div>",
+        }
+        const second_two = {
+            template: "<div class='second_two'>this is second_two</div>",
+        }
+
+
+
+
+        const haha = {
+            template: "<div class='haha'>haha</div>",
+        }
+        const hehe = {
+            template: "<div class='hehe'>hehe</div>",
+        }
+        const vuerouter = new VueRouter({
+            routes: [{
+                path: '/first',
+                name: "firstName",
+                components: {
+                    default: haha,
+                    first_one: first,
+                    first_two: second,
+                },
+            }, {
+                path: '/second',
+                name: "secondName",
+                components: {
+                    default: hehe,
+
+                    second_one,
+                    second_two,
+                },
+            }],
+        });
+        const vue = new Vue({
+            el: "#app",
+            router: vuerouter,
+        });
+
+
+    </script>
+</body>
+
+</html>

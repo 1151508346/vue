@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link :to = "{path:'/one',query:{name:'Jack',age:20}}" tag = "h1" >one</router-link>
+        <router-link :to="{path:'/two',query:{name:'Lucy',age:18}}" tag = "h1">two</router-link>
+
+        <router-link
+             :to="{
+            name:'oneName',
+            query:{
+                name:'Lucy',age:18
+            },
+            params:{
+                show:'showone'
+            }
+        }"
+         tag="h1">oneName</router-link>
+        <router-link 
+            :to="{
+                name:'twoName',
+                query:{
+                    name:'Lucy',
+                    age:18
+                },
+                params:{
+                    show:'showtwo'
+                }
+            }" 
+            tag="h1"
+            >twoName</router-link>
+
+        {{$route.query}}
+        {{$route.params}}
+        <router-view></router-view>
+    </div>
+    <script>
+        const One = {
+            template:`
+                <h2>One</h2>
+            `
+        }
+        const Two = {
+                template: `
+                <h2>Two</h2>
+            `
+            }
+        const router = new VueRouter({
+            routes: [
+                {
+                    path: "/one",
+                    name: "oneName",
+                    component: One
+                }, {
+                    path: "/two",
+                    name: "twoName",
+                    component: Two
+                }
+            ]
+        })
+        var vm = new Vue({
+            el: "#app",
+            router,
+            data: {
+
+            },
+            methods: {
+
+            }
+        })
+
+    </script>
+</body>
+
+</html>

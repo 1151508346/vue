@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+    [v-cloak]{
+        display: none;
+    }
+    
+    </style>
+    <body>
+    <div id="app" v-cloak>
+        <button v-on:click="rev1">点击</button>
+        <!-- <button v-on:click="rev1">点击</button> -->
+        <!-- v-model绑定在单个复选框上面的时候表示复选框有没有被选中 -->
+        <input type="checkbox" v-model="message" />
+        <p>{{message}}</p>
+        <h1>{{rev2()}}</h1>
+    </div>
+        
+
+    </body>
+    <script src="vue.js"></script>
+    <script>
+    function demo(){
+        alert('欢迎您');
+    }
+    function funcme(){
+                return 'aaa';
+     }
+    new Vue({
+        el:"#app",
+        data:{
+            message:"",
+            func:funcme
+        },
+        methods:{
+            rev:demo,
+            rev1(){
+                alert(111);
+            },
+            rev2(){
+                return 'bbb';
+            }
+            
+        }
+
+    });
+    </script>
+</html>

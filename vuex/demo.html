@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="./vue.js"></script>
+        <script src="./vuex.js"></script>
+    </head>
+    <body>
+    <div id="app">
+        
+        <h1>{{$store.state.success ?"退出":"登录"}}</h1>
+        <button @click="handleLoginState">点击</button>
+        {{count}}
+        {{$store.state.count}}
+
+    </div>
+
+   <script>
+
+   const state = {
+        success:false,
+        count:10
+   }
+   const mutations = {
+        login(state){
+            // state.success = true;
+            console.log(state.success)
+        },
+        changecount(state){
+            state.count=15;
+            console.log(state);
+        }
+   }
+   const getters = {
+        count:function(state){
+           
+            return state.count;
+        }
+   }
+    const store =new Vuex.Store({
+        state,
+        mutations,
+    })
+     new Vue({
+        el:"#app",
+        store,
+        data:{
+            message:1,
+
+        },
+        computed:{
+            count:function(){
+              
+               // this.$store.state.count = this.message;
+               
+               return this.$store.getters.count ;
+            }
+         },
+        methods:{
+            handleLoginState(){
+               this.message = 20;
+               this.$store.commit('changecount');
+               // this.$store.getters.count;
+            }
+        }
+        
+     })
+
+
+   </script>
+    </body>
+</html>

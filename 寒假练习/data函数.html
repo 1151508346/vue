@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+   <!--  <div id="app">
+      <hello></hello>
+   </div> -->
+
+    <div id="exam">
+        <hello1></hello1>
+        <hello1></hello1>
+        <hello1></hello1>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+   /* Vue.component('hello',{
+        template:'<h1>{{message}}</h1>',
+        data:function(){
+            return {message:'data必须为函数'}
+        }
+    });
+    new Vue({
+        el:'#app',
+
+    });*/
+    var child = {
+            template:"<button @click='json+=1' >{{json}}</button>",
+            data:function(){
+                return {json:0};
+            }
+              
+
+        }
+    new  Vue({
+        el:"#exam",
+        components:{
+            'hello1':child,
+        }     
+    });
+    </script>
+</body>
+</html>

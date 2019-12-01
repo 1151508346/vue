@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <div v-show = '0'>aaaa</div> -->
+        <ul>
+            <!-- :key会提升每一项渲染的效率 -->
+            <li v-for="(value,key) of list" :key="key">{{key}}=>{{value}}</li>
+        </ul>
+
+    </div>
+    <script>
+        var obj = {
+            name:"Jack",
+            sex:"female",
+            title:null,
+            age:18,
+
+        }
+        var vm = new Vue({
+            el:"#app",
+            data:{
+            list:['aaa','bbb','ccc'],
+
+            }
+        })
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        const hello = {
+            template: `
+            <div id="root">
+                hello
+            </div>
+        `
+        }
+
+        const tem = {
+            template: `
+        <h1 id="app">h1</h1>
+         `
+        }
+
+        // 、render渲染方法　　把app容器替换为 渲染的hello组件 　　一个app只能一个render
+        new Vue({
+            render: (ele) => ele(hello, {
+                props: {
+
+                },
+                style: {
+                    width: "100px",
+                    height: "100px",
+                    border: "1px solid red",
+                }
+            }),
+            template: "<tem/>",
+            components: {
+                tem
+            }
+        }).$mount('#app');
+    </script>
+</body>
+
+</html>

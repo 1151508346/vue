@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+
+    <div id="app">
+        <h3>点击append导航栏发生变化</h3>
+        <h3>append 表示在导航栏上追加append</h3>
+        <ol>
+            <li>
+                <!-- 在使用params时，必须加上name属性，否则params对象中的数据是不能被获取到的 -->
+               <!--  <router-link :to="{path:'/append',name: 'append',params:{id:111,name:'Jack'}}" append>append
+                </router-link> -->
+                 <router-link :to="{path:'/append',name: 'append',params:{name:'Jack'}}" append>append
+                </router-link>
+
+
+            </li>
+            <li>
+                <router-link :to="{path:'/exact',name:'exact',params:{id:222,name:'Lucy'}}" exact>exact</router-link>
+            </li>
+            <p>{{$route.params.id}}:{{$route.params.name}}</p>
+            <router-view></router-view>
+        </ol>
+    </div>
+    <script>
+
+        const append = {
+            template: '<div>This is Append</div>',
+        }
+        const exact = {
+            template: '<div>This is Exact</div>',
+        }
+        const router = new VueRouter({
+            routes: [
+                { path: "/append", name: "append", component: append },
+                { path: "/exact", name: 'exact', component: exact },
+            ]
+        })
+        new Vue({
+            el: "#app",
+            router,
+        })
+
+    </script>
+</body>
+
+</html>

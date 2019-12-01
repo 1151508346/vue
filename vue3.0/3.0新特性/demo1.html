@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{state.double}}</h1>
+        <button @click = "increatment">+</button>
+        <input type="text" v-model = "state.count">
+        <button @click = "decreatment">-</button>
+        <div v-html="state.dom"></div>
+        <div @click = "changeAAAA">{{aaaa}}</div>
+        
+    </div>
+    <script>
+        const {createApp,reactive,refs,effect,computed} = Vue;
+        const App = {
+            setup(){
+                const state = reactive({
+                    count:3,
+                    double:computed(()=>state.count*2),
+                    dom:"<h1 style='color:red'>dom</h1>"
+                })
+                
+                const defineMethods = {
+                    increatment(){
+                        state.count+=1;
+                    },
+                    decreatment(){
+                        state.count--
+                    }
+                }
+
+                return {
+                    state,
+                    ...defineMethods
+                }
+            }
+        }
+        createApp().mount(App,"#app")
+    </script>
+</body>
+</html>

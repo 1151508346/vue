@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <input type="text" v-model ='message'>
+        <h1>{{message}}</h1>
+
+        <p>{{msg}}</p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+       var v =  new Vue({
+            el:"#app",
+            data:{
+                message:'',
+                msg:1
+            },
+            methods:{
+                timer:function(){
+                    setInterval(function(){
+                        this.msg+=1;
+                        console.log(this.msg);
+                    }.bind(this),2000);
+                }
+            }
+        })
+        v.timer();
+      
+        
+    
+    </script>
+     
+</body>
+</html>
+
+
+

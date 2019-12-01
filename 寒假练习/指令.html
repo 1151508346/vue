@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <title>指令</title>
+    <script src="vue.js"></script>
+    <body>
+    <div id="app">
+        <p v-html = "p"></p>
+    <!-- v-html能够识别html元素，v-text只能识别纯文本<==>{{}} -->
+        <p v-once>{{message}}</p>
+    <!-- v-once数据只能被渲染一次，数据更新时，也不会发生变化 -->
+    <!-- v-once用途：
+         详细页，关于我们[地址，电话]
+         只要用与变化不多的页面[单页推广]
+         -->
+    <input type="text" name="usename" v-model="message" />
+
+    <!-- 
+        v-show根据表达式的值来显示html元素
+        通过bool值来控制html元素的显示和隐藏
+
+        本质：display：none,安全性不高
+        主要适合做页面特效，不适合做后台管理
+
+    -->
+      <p v-show="show">看得见</p>
+      <p v-show="hide">看不见</p>
+    <!-- v-if根据表达式的布尔值在DOM元素中生成或者移出 
+        安全性高，可以作为后台管理系统的使用
+    -->
+      <p v-if='show' >v-if=true</p>   
+      <p v-if='hide' >v-if=false</p>
+      </div>
+    <script type="text/javascript">
+    
+        new Vue({
+            el:"#app",
+            data:{
+                p:"<strong style= 'color:red;'>aaaa</strong>",
+                message:'你好',
+                show:true,
+                hide:false
+            }
+        });
+
+
+
+  
+    </script>
+    </body>
+</html>

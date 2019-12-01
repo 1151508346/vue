@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style type="text/css"> 
+            #input{
+                color:#59f;
+                background-color: #59f;
+            
+
+            }
+            #aa{
+                color:#59f;
+                background-color: #59f;
+                border:1px solid red;
+                font-size:50px;
+               /*pointer-events: none;不可点击*/
+            }
+            #aa:hover{
+                /*cursor:not-allowed; 禁止*/
+            }
+    </style>
+    <body>
+    <!-- <input type="radio" id="aa" /> -->
+    <div id="app">
+        aa<input type="radio" name='name' v-show="show" value="AA" :id="abc" v-model ='message'/>
+        bb<input type="radio" name='name' v-show="show" value="BB"  v-model ='message'/>
+        <h1>{{message}}</h1>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+            new Vue({
+                el:"#app",
+                data:{
+                    message:'',
+                    show:true,
+                    hide:false,
+                    abc:"input1"
+                }
+            });
+    </script>
+    </body>
+</html>

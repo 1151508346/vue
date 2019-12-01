@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>数组</title>
+</head>
+<script src="vue.js"></script>
+
+<body>
+    <div id="app" >
+        <h1>{{message[0]}}</h1>
+        <h1>{{array.name}}</h1>
+        <h1>{{array['contry']}}</h1>
+
+       
+
+    </div>
+    <script type="text/javascript">
+        var arr = ['aaa', 'bbb', 'ccc'];
+        var json = {
+            name: "Jack",
+            age: 18,
+            contry: "China"
+        }
+        new Vue({
+            el: "#app",
+            data: {
+                message: arr,
+                array: json,
+
+                p: "<strong style= 'color:red;'>aaaa</strong>"
+            }
+        });
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

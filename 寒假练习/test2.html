@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                name: 'Jack',
+                // age:null,
+            }
+        });
+        // vm.$data.name = '132';
+        vm.$set(vm.$data,'name','123');
+
+        console.log(vm.$data.name);
+
+        
+        // var json = {
+        //     name: "Ludy",
+        //     age: 18,
+        // }
+        // var new_json = { json, sex: 'female' }
+
+        // console.log(new_json);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div id="app">
+        <aa></aa>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        // 创建实例时传递 props。主要作用是方便测试。
+
+        // 限制：只用于 new 创建的实例中。
+
+        var aa = Vue.component('aa', {
+            template: "<h1>aa</h1>",
+            methods: {
+                show: function () {
+
+                    console.log('show')
+                }
+            }
+        });
+        console.log(new aa())
+        new aa().show();
+
+
+        var Comp = Vue.extend({
+            props: ['msg', 'msg2'],
+            data: function () {
+                return {
+                    show: 'show'
+                }
+            },
+            template: '<div>{{ msg }} {{msg2}} {{show}}</div>'
+        })
+
+        var vm = new Comp({
+            propsData: {
+                msg: 'hello',
+                msg2: "hello2"
+            }
+        }).$mount('#app');
+
+
+
+
+    </script>
+</body>
+
+</html>

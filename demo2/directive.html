@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-hanhan="color">{{btnText}}</h1>
+        <h1 v-hanhan="color">color</h1>
+        <button @click="updateBtntext">改变btndata</button>
+        <button @click = "unbind">解除绑定</button>
+    </div>
+    <script>
+    var i = 0
+    Vue.directive("hanhan",{
+        bind:function(el,binding){
+            console.log("bind"+JSON.stringify(binding))
+            el.style.color = binding.value
+        },
+        inserted:function(){
+            console.log("insert")
+        },
+        update:function(){
+            console.log("update")
+        },
+        componentUpdated:function(){
+            console.log("completeupdate")
+        },
+
+        unbind:function(){
+            console.log('unbind')
+        }
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            color:"green",
+            btnText:0,
+            type:"first"
+        },
+        methods:{
+            updateBtntext(){
+                this.btnText++
+            },
+            unbind(){
+                this.$destroy()
+            }
+        },
+        // components:{
+        //     first:First,
+        //     second:Second
+        // }
+    })
+        
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

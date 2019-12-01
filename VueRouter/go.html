@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+</head>
+
+
+<script src="vue.js"></script>
+<script src="vue-router.js"></script>
+<!-- <script src="vue.js"></script>
+<script src="vue-router.js"></script> -->
+
+<body>
+    <div id="app">
+        <h1>导航</h1>
+        <button @click='forward'>前进</button>
+        <button @click='back'>后退</button>
+        <button @click='push'>push 跳转</button>
+        <ol>
+            <li>
+                <router-link to="/push">push</router-link>
+            </li>
+            <li>
+                <router-link to="/first">First</router-link>
+            </li>
+            <li>
+                <router-link to="/second">Second</router-link>
+            </li>
+            <ol>
+                <li>
+                    <!-- tag被渲染的a标签外部被h1所标记 -->
+                    <router-link to="/first/first" tag="h1">First</router-link>
+                </li>
+
+                <li>
+                    <router-link to="/first/second" tag="h1">Second</router-link>
+                </li>
+            </ol>
+
+        </ol>
+
+
+        <router-view></router-view>
+        <h1>{{$route}}</h1>
+    </div>
+
+    <script>
+        const Push = {
+            template: "<div>this is push</div>"
+        }
+        const First = {
+            template: `<div>
+                    <div>This is First</div>
+                    <router-view></router-view>
+                    </div>`,
+        }
+        const Second = {
+            template: "<div>This is Seconds</div>",
+        }
+        const first_first = {
+            template: "<div>我是子路由first_first</div>",
+        }
+        const second_second = {
+            template: "<div>我是子组件路由second_second</div>",
+        }
+        const vuerouter = new VueRouter({
+            routes: [
+                {
+                    path: "/first", component: First,
+                    children: [
+                        { path: 'first', component: first_first, },
+                        { path: 'second', component: second_second },
+                    ]
+                },
+                { path: "/second", component: Second, },
+                { path: "/push", component: Push, }
+            ]
+        });
+
+        console.log(vuerouter)
+        const vm = new Vue({
+            el: "#app",
+            router: vuerouter,
+            methods: {
+                forward: function () {
+                    vuerouter.go(1);
+                },
+                back: function () {
+                    vuerouter.go(1);
+                },
+                // push: function () {
+                //     vuerouter.push('/push');
+                // }
+                push: function () {
+
+                    vuerouter.push({ path: '/push', query: { a: 123, b: 456 } });
+
+                }
+
+            }
+        });
+
+    </script>
+</body>
+
+
+</html>

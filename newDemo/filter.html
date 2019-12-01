@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="app">
+       
+      <!--   <h1>{{msg||capitalize}}</h1> -->
+        <h1>{{msg|uppercase}}</h1>
+        <h1>{{msg|lowercase}}</h1>
+        <h1>{{msg|lreverse}}</h1>
+        <h1>{{msg|reverse}}</h1>
+
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    // filters过滤器，在vue2.0中对captalize uppercase lowercase lreverse已经废除了，需要通过filter属性自定义过滤的处理方法
+   
+    //在外部创建filter过滤器
+     var selfFilter = Vue.filter('reverse', function (value) {
+        return value.split('').reverse().join('');
+    })
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"this",
+                msg1:"",
+            },
+            //内部创建filter过滤器
+           filters:{
+                uppercase(item){
+                    console.log(item)
+                        return item.toUpperCase();    
+                 },
+                 lowercase(item){
+                    return item.toLowerCase();
+                 },
+                 lreverse(item){
+                    return item.split("").reverse().join("");
+                 }
+             }
+         })  
+
+    </script>
+    </body>
+</html>

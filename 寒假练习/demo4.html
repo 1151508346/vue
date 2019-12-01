@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="app">
+        <input @keyup.enter="onEnter">
+        <input @keyup.a="onEnter">
+        <button @click.once = "Click">按钮</button>
+        <button @click.stop= "Click($event)">阻止冒泡</button>
+        <button v-on="{click:doit,mouseup:dothat,mousedown:dothis}">对象方式</button>
+        <div id="div" :style="[my_style,my_style2]"></div>
+
+        <select name="select" id="" v-model="message">
+            <option value="aa">1</option>
+            <option value="bb">2</option>
+            <option value="cc">3</option>
+        </select>
+        <h1>{{message}}</h1>
+<!-- v-pre
+    跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。
+ -->
+        <div v-pre>
+        <div>不被编译</div>
+            <span>{{message}}</span>
+            <span>{{message}}</span>
+            <span>{{message}}</span>
+        </div>
+    </div>
+    <script src="vue.js"></script>
+    <script type="text/javascript">
+    // "use strict";
+        new Vue({
+            el:"#app",
+            data:{
+                my_style:{
+                    width:100+'px',
+                    height:100+'px',
+                  
+                    /*borderWidth:5+'px',
+                    borderStyle:"solid",
+                    borderColor:"black"*/
+                    /*border:2px solid red*/
+                },
+                my_style2:{
+                    background:"red",
+                    border:'5px solid black',
+                },
+                message:"",
+
+            },
+            methods:{
+                onEnter(e){
+                    alert('按了enter键'+e.keyCode)
+                },
+                Click(e){
+                    alert("button被点击");
+                    console.log(e);
+                },
+                dothis(){
+                    console.log('鼠标按下');
+                },
+                dothat(){
+                    console.log('鼠标抬起');
+                },
+                doit(){
+                    console.log('鼠标点击')
+                }
+            }
+        });
+/*document.onclick = function(){
+    alert(132);
+}*/
+
+
+    </script>
+    </body>
+</html>

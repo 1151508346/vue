@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>{{msg}}</h1>
+    <button @click='change'>change</button>
+</div>
+
+<script>
+var vm = Vue.extend({
+    data:function(){
+        return {
+         msg:"aaaa",
+        }
+    },
+    methods:{
+        change:function(){
+            this.msg = '不能再次更改了';
+            this.$emit('newEvent');
+
+
+        }
+    },
+    mounted:function(){
+       
+            this.$on('newEvent',function(){
+                    console.log('change');
+            })
+            console.log('mount函数被执行了');
+    }
+})
+new vm().$mount('#app');
+    // var tem = document.getElementById('tem');
+    
+    // console.log(tem);
+
+  
+</script>
+</body>
+</html>

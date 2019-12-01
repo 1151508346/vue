@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<div id="div">
+    <hello>
+        <!-- <div>aas</div> -->
+        
+        <p slot="a">aaa</p>
+        <p slot="b">bbb</p>
+
+        <p slot="c">ccc</p>
+        <template slot-scope="props">
+            {{props.content}} 
+        </template>
+    </hello>
+
+</div>
+<script>
+    Vue.component('hello',{
+        template:`<div>
+            <slot name="a"></slot>
+            <slot name="b"></slot>
+            <slot name="c"></slot>
+            <slot content='作用于插槽'></slot>
+          </div>`,
+    })
+    var vm = new Vue({
+        el:"#div",
+        data:{}
+    });
+
+    var vm2 = new Vue({
+        el:"#app",
+        data:{
+            message:"aaaaaa",
+        },
+
+
+    })
+</script>
+</body>
+</html>

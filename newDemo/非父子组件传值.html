@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <child content="Good"></child>
+        <child content="Morning"></child>
+        <child-two></child-two>
+    </div>
+
+    <script>
+        /**
+        非父子组件之间传值问题：
+            借助中央总线--new Vue()创建一个空的Vue实例
+            因为两个组件之间没有关系
+            目的是将两个组件通过数据连接起来
+            当触发click函数的时候，会创建一个自定义事件：change
+            通过mounted来进行change自定义事件的监听，child组件被执行两次，当第二次执行
+            child组件的时候，上边就已经绑定了change自定义事件了，因为Vue.bus在vue的prototype
+            上面，所以上面存在change自定义事件，那么mounted对change事件的监听就会再次被执行，
+            带进去的参数也是原来的数据，
+            然后在通过把数据更改，这样就达到了非父子组件之间的传值。
+                   
+        */
+
+        Vue.prototype.bus = new Vue();
+        var childTwo = Vue.component("childTwo",{
+            template:`<h1>{{msg}}</h1>`,
+            data:function(){
+                return {
+                    msg:"default"
+                }
+            },
+            mounted:function(){
+                var _this = this;
+                this.bus.$on("change",function(value){
+                    console.log("childTwo-change")
+                    _this.msg = value;
+                })
+            }
+        })
+        var child = Vue.component('child', {
+            props: ['content'],
+            template: "<h1 @click='handleClick'>{{message}}</h1>",
+            data: function () {
+                return { message: this.content }
+            },
+            methods: {
+                handleClick: function () {
+                    // console.log("aaa")
+                    this.bus.$emit('change', this.message);
+                },
+            },
+            mounted: function () {
+                var _this = this;
+                // console.log(this.bus);
+                var i = 0;
+                this.bus.$on('change', function (value) {
+                   console.log(++i)
+                    // console.log(value);
+                    // console.log(this.content);
+                    _this.message = value;
+                })//监听自定义change事件
+            }
+        });
+
+        var vm = new Vue({
+            el: "#app",
+        });
+
+
+    </script>
+</body>
+
+</html>

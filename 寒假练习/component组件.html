@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <component :is="type"></component>
+        <button @click='handleBtnClick'>change</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component('hello',{
+            template:"<p>我是p组件</p>",
+
+        });
+        Vue.component('word',{
+            template:"<h1>我是h1组件</h1>",
+        });
+        new Vue({
+            el:'#app',
+            data:{
+                type:'word',
+            },
+            methods:{
+                handleBtnClick:function(){
+                    this.type = this.type==='hello' ? 'word' : 'hello';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

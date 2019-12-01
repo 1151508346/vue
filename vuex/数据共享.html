@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+	<script src="./vuex.js"></script>
+</head>
+<body>
+	<div id="app">
+		<one></one>
+		<two></two>
+        <button @click = "handleDispatch">dispatch</button>
+	</div>
+	<script>
+		 Vue.component('one',{
+			template:`
+				<div>{{this.$store.state.count}}</div>
+			`,
+
+
+		});
+		 Vue.component('two',{
+			template:`
+				<div>{{this.$store.state.count}}</div>
+			`,
+
+
+		});
+         var A ={
+                    actions:{
+                        getInfo({state,commit,rootState}){
+                            console.log(commit("addnum"))
+                        }
+                    },state:{
+                        msg:"xiaoxi"
+                    }
+                } 
+
+ 		
+		var store = new Vuex.Store({
+			state:{
+				count:1 ,
+			},
+			mutations:{
+				addnum:function(state){
+					console.log(state);
+					// console.log(++state.count);
+				}
+			},
+			getters : {
+                count: function (state) {
+                    console.log('asdasd');
+                   
+                    return  state.count += 100;
+                }
+            },
+            actions : {
+                getRootInfo(context){
+                    console.log(context)
+                }
+            },
+            modules:{
+                A
+            }
+		})
+
+		var vm = new Vue({
+			el:"#app",
+			store,
+			data:{
+
+			},
+			methods:{
+                handleDispatch(){
+                    this.$store.dispatch("getInfo")
+                }
+			}
+		});
+		
+		// console.log(vm.$store.state.count)
+		// document.addEventListener('click',function(){
+		// 	console.log(vm.$store.commit('addnum'));
+		// 	console.log(vm.$store.getters.count)
+		// })
+
+
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        #h2{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 v-text='content' @click='clickHandle'></h1>
+    </div>
+    <script>
+      var v =  new Vue({
+            el:"#app",
+            // props:['propname'],
+            // template:"<h2 :id='id'>{{title}}</h2>",
+            data:{
+                msg:"This is A Vue",
+                word:'word',
+                title:"标题",
+                id:"h2",
+                content:"hello"
+            },
+            methods:{
+                    clickHandle:function(){
+                    //    this.content =  this.content == 'hello' ? 'word':'hello';
+                        // console.log( this.content == 'hello' );
+                        // console.log('clickHandle方法的执行');
+                        console.log(this);
+                    }
+            },
+        });
+       
+        
+    </script>
+</body>
+</html>
